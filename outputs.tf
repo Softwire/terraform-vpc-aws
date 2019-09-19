@@ -13,3 +13,7 @@ output "public_subnet_ids" {
 output "availability_zone_ids" {
   value = local.availability_zones
 }
+
+output "nat_gateway_ids" {
+  value = aws_nat_gateway.current.*.id
+}
