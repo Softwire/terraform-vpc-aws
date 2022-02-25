@@ -41,7 +41,7 @@ resource "aws_subnet" "current" {
   availability_zone_id    = var.availability_zones[count.index]
   map_public_ip_on_launch = false
 
-  tags = merge(map("Name", "${var.name_prefix}${count.index}"), var.subnet_tags)
+  tags = merge(tomap({Name = "${var.name_prefix}${count.index}"}), var.subnet_tags)
 }
 
 resource "aws_network_acl" "current" {
