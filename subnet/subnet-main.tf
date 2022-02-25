@@ -51,7 +51,7 @@ resource "aws_network_acl" "current" {
   ingress    = [for rule in var.acl_ingress : merge(local.optional_rule_placeholders, rule)]
   egress     = [for rule in var.acl_egress : merge(local.optional_rule_placeholders, rule)]
 
-  tags = merge(map("Name", "${var.name_prefix}acl"), var.acl_tags)
+  tags = merge(tomap({Name = "${var.name_prefix}acl"}), var.acl_tags)
 }
 
 output "subnet_ids" {
