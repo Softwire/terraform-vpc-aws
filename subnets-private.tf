@@ -15,7 +15,7 @@ module "subnets_private" {
 resource "aws_route_table" "private" {
   count  = local.private_subnet_count
   vpc_id = aws_vpc.current.id
-  tags   = merge(map("Name", "${var.name_prefix}private-${local.availability_zones[count.index]}"), var.tags_default, var.tags_route_table)
+  tags   = merge(tomap({Name = "${var.name_prefix}private-${local.availability_zones[count.index]}"}), var.tags_default, var.tags_route_table)
 }
 
 resource "aws_route_table_association" "private" {
