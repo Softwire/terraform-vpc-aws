@@ -14,7 +14,7 @@ module "subnets_public" {
 resource "aws_route_table" "public" {
   count  = local.public_subnet_count
   vpc_id = aws_vpc.current.id
-  tags   = merge(map("Name", "${var.name_prefix}public-${local.availability_zones[count.index]}"), var.tags_default, var.tags_route_table)
+  tags   = merge(tomap({Name = "${var.name_prefix}public-${local.availability_zones[count.index]}"}), var.tags_default, var.tags_route_table)
 }
 
 resource "aws_route_table_association" "public" {
@@ -34,7 +34,7 @@ resource "aws_route" "public_default" {
 
 resource "aws_internet_gateway" "current" {
   vpc_id = aws_vpc.current.id
-  tags   = merge(map("Name", "${var.name_prefix}igw"), var.tags_default, var.tags_igw)
+  tags   = merge(tomap({Name = "${var.name_prefix}igw"}), var.tags_default, var.tags_igw)
 }
 
 resource "aws_eip" "ngw" {
@@ -51,7 +51,7 @@ resource "aws_nat_gateway" "current" {
   allocation_id = aws_eip.ngw[count.index].id
   subnet_id     = module.subnets_public.subnet_ids[count.index]
 
-  tags = merge(map("Name", "${var.name_prefix}ngw-${local.availability_zones[count.index]}"), var.tags_default, var.tags_ngw)
+  tags = merge(tomap({Name = "${var.name_prefix}ngw-${local.availability_zones[count.index]}"}), var.tags_default, var.tags_ngw)
 
   lifecycle {
     create_before_destroy = true
