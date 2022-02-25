@@ -5,5 +5,5 @@ resource "aws_vpc" "current" {
   enable_dns_hostnames = var.enable_dns_hostnames
   enable_dns_support   = var.enable_dns_support
 
-  tags = merge(map("Name", "${var.name_prefix}vpc"), var.tags_default, var.tags_vpc)
+  tags = merge(tomap({"Name", "${var.name_prefix}vpc"}), var.tags_default, var.tags_vpc)
 }
