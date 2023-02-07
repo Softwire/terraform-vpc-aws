@@ -1,14 +1,15 @@
 module "subnets_public" {
   source = "./subnet"
 
-  vpc_id             = aws_vpc.current.id
-  availability_zones = var.create_public ? local.availability_zones : []
-  cidr               = local.public_subnet_cidr
-  name_prefix        = "${var.name_prefix}public-"
-  subnet_tags        = merge(var.tags_default, var.tags_subnets)
-  acl_tags           = merge(var.tags_default, var.tags_acl)
-  acl_egress         = var.acl_egress_public
-  acl_ingress        = var.acl_ingress_public
+  vpc_id                       = aws_vpc.current.id
+  availability_zones           = var.create_public ? local.availability_zones : []
+  cidr                         = local.public_subnet_cidr
+  name_prefix                  = "${var.name_prefix}public-"
+  subnet_tags                  = merge(var.tags_default, var.tags_subnets)
+  acl_tags                     = merge(var.tags_default, var.tags_acl)
+  acl_egress                   = var.acl_egress_public
+  acl_ingress                  = var.acl_ingress_public
+  map_public_subnet_public_ips = var.map_public_subnet_public_ips
 }
 
 resource "aws_route_table" "public" {
