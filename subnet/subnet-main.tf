@@ -16,6 +16,10 @@ variable "acl_ingress" {
 variable "acl_egress" {
   type = list(any)
 }
+variable "map_public_subnet_public_ips" {
+  type    = bool
+  default = false
+}
 
 locals {
   subnet_count = length(var.availability_zones)
@@ -39,7 +43,7 @@ resource "aws_subnet" "current" {
   vpc_id                  = var.vpc_id
   cidr_block              = cidrsubnet(var.cidr, local.subnet_newbits, count.index)
   availability_zone_id    = var.availability_zones[count.index]
-  map_public_ip_on_launch = false
+  map_public_ip_on_launch = var.map_public_subnet_public_ips
 
   tags = merge(tomap({Name = "${var.name_prefix}${count.index}"}), var.subnet_tags)
 }

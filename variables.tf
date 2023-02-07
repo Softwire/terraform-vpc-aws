@@ -37,6 +37,12 @@ variable "create_public" {
   description = "Creates public subnets in the given availability zones. Will create a NAT gateway per availability zone if private subnets enabled."
 }
 
+variable "map_public_subnet_public_ips" {
+  type        = bool
+  default     = false
+  description = "Maps public subnets with public IPv4 addresses on launch."
+}
+
 variable "create_private" {
   type        = bool
   default     = true
