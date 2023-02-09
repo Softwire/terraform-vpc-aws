@@ -25,3 +25,7 @@ output "availability_zone_ids" {
 output "nat_gateway_ids" {
   value = aws_nat_gateway.current.*.id
 }
+
+output "nat_gateway_public_eips" {
+  value = aws_eip.ngw.*.public_ip
+}

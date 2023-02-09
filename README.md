@@ -56,9 +56,10 @@ Default ACL default rules allow all traffic:
 
 ## Outputs
 
-| Variable              | Description                                                                    | 
-|-----------------------|--------------------------------------------------------------------------------|
-| vpc_id                | ID of the created VPC                                                          | 
-| private_subnet_ids    | IDs of the created private subnets. Empty list if `create_private = true`      | 
-| public_subnet_ids     | IDs of the created public subnets. Empty list if `create_public = true`        |
-| availability_zone_ids | IDs of the availability zones in use. See `availability_zones` input for info. |
+| Variable                | Description                                                                    | 
+|-------------------------|--------------------------------------------------------------------------------|
+| vpc_id                  | ID of the created VPC                                                          | 
+| private_subnet_ids      | IDs of the created private subnets. Empty list if `create_private = true`      | 
+| public_subnet_ids       | IDs of the created public subnets. Empty list if `create_public = true`        |
+| availability_zone_ids   | IDs of the availability zones in use. See `availability_zones` input for info. |
+| nat_gateway_public_eips | Public IPs of the EIPs associated with the NGW                                 |
