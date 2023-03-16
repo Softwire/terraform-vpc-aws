@@ -10,6 +10,14 @@ output "public_subnet_ids" {
   value = module.subnets_public.subnet_ids
 }
 
+output "private_cidr_blocks" {
+  value = module.subnets_private.cidr_blocks
+}
+
+output "public_cidr_blocks" {
+  value = module.subnets_public.cidr_blocks
+}
+
 output "private_route_table_ids" {
   value = aws_route_table.private.*.id
 }

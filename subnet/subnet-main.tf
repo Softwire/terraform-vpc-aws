@@ -35,13 +35,15 @@ locals {
     icmp_type   = 0
     icmp_code   = 0
   }
+
+  cidr_blocks = [for i in range(0, local.subnet_count) : cidrsubnet(var.cidr, local.subnet_newbits, i)]
 }
 
 resource "aws_subnet" "current" {
   count = local.subnet_count
 
   vpc_id                  = var.vpc_id
-  cidr_block              = cidrsubnet(var.cidr, local.subnet_newbits, count.index)
+  cidr_block              = local.cidr_blocks[count.index]
   availability_zone_id    = var.availability_zones[count.index]
   map_public_ip_on_launch = var.map_public_subnet_public_ips
 
@@ -60,4 +62,8 @@ resource "aws_network_acl" "current" {
 
 output "subnet_ids" {
   value = aws_subnet.current.*.id
+}
+
+output "cidr_blocks" {
+  value = local.cidr_blocks
 }
