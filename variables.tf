@@ -22,6 +22,11 @@ variable "enable_dns_hostnames" {
   default     = false
   description = "Flag to enable/disable public DNS hostnames for public IP addresses of instances in the VPC."
 }
+variable "enable_flow_logs" {
+  type        = bool
+  default     = false
+  description = "Flag to enable/disable VPC flow logs."
+}
 
 # Subnet variables
 
