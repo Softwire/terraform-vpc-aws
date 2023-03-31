@@ -65,3 +65,4 @@ Default ACL default rules allow all traffic:
 | public_cidr_blocks      | CIDR blocks of the created public subnets. Empty list if `create_public = false`   |
 | availability_zone_ids   | IDs of the availability zones in use. See `availability_zones` input for info.     |
 | nat_gateway_public_eips | Public IPs of the EIPs associated with the NGW                                     |
+| default_network_acl_id  | Default network ACL ID of the created VPC                                          |
