@@ -37,3 +37,7 @@ output "nat_gateway_ids" {
 output "nat_gateway_public_eips" {
   value = aws_eip.ngw.*.public_ip
 }
+
+output "default_network_acl_id" {
+  value = aws_vpc.current.default_network_acl_id
+}
