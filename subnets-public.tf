@@ -39,8 +39,8 @@ resource "aws_internet_gateway" "current" {
 }
 
 resource "aws_eip" "ngw" {
-  count = local.ngw_count
-  vpc   = true
+  count  = local.ngw_count
+  domain = "vpc"
 
   lifecycle {
     create_before_destroy = true

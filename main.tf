@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+  }
+}
+
 locals {
   # Split the VPC cidr range in two.
   # We'll use the first to sub-divide into private subnets and the second into public
